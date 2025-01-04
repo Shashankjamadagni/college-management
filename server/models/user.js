@@ -1,5 +1,6 @@
 const joi = require("joi");
-const {hash} = require("bcrypt");
+const {hash, compare} = require("bcrypt");
+const {sign} = require("jsonwebtoken");
 
 const {getDb} = require("../utils/db");
 
@@ -31,7 +32,41 @@ const registerUser = async (user) => {
 
 };
 
+const getUserByQueryAndOptions = async (query, options) => {
+
+  const user = await getDb().collection(collectionName).findOne(query, options);
+
+  return user;
+
+};
+
+const validatePassword = async (password, hashedPassword) => {
+
+  const result = await compare(password, hashedPassword);
+
+  return result;
+
+};
+
+const generateToken = async (user) => {
+
+  if (!user || !user._id || !user.role) {
+    throw new Error("User not found");
+  }
+
+  const token = sign({
+    _id: user._id,
+    role: user.role
+  }, process.env.JWT_SECRET, {expiresIn: "30d"});
+
+  return token;
+
+};
+
 module.exports = {
   userSchema,
-  registerUser
+  registerUser,
+  getUserByQueryAndOptions,
+  validatePassword,
+  generateToken
 };
