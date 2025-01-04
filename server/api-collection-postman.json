@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "8c895730-203d-4bad-9fdf-8027b6f3fa72",
+		"name": "College Management",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34212014"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzc4ZThlMjRjZTcwMTQ2ZjZmODk2MTQiLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3MzU5ODA5MTMsImV4cCI6MTczODU3MjkxM30.VHuqqi7EMe8qpK75cChlDXLQKPkxGpdSR2jGc2VUXTY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"fullName\": \"Shashank\",\n    \"email\": \"shashank.jamadagni1@gmail.com\",\n    \"password\": \"SkSdM@0505\",\n    \"role\": \"student\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/v1/register",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"v1",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"shashank.jamadagni1@gmail.com\",\n    \"password\": \"SkSdM@0505\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/v1/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"v1",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Marks",
+			"item": [
+				{
+					"name": "Add Marks",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"studentId\": \"6778fdf3a684eebe91ca2999\",\n    \"marks\": {\n        \"science\": 81,\n        \"maths\": 99,\n        \"english\": 91\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/marks/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"marks",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Fetch My Marks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/marks/v1",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"marks",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzc4ZmRmM2E2ODRlZWJlOTFjYTI5OTkiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTczNTk4MjczNywiZXhwIjoxNzM4NTc0NzM3fQ.Y4Esc3fns4ArIbBVzbVLTjUz2xX4gG-9TE4Rg0oVkLQ",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	]
+}
