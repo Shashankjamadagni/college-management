@@ -1,6 +1,6 @@
 const joi = require("joi");
 const {hash, compare} = require("bcrypt");
-const {sign} = require("jsonwebtoken");
+const {sign, verify} = require("jsonwebtoken");
 
 const {getDb} = require("../utils/db");
 
@@ -63,10 +63,18 @@ const generateToken = async (user) => {
 
 };
 
+const validateToken = async (token) => {
+  
+  const payload = verify(token, process.env.JWT_SECRET);
+
+  return payload;
+};
+
 module.exports = {
   userSchema,
   registerUser,
   getUserByQueryAndOptions,
   validatePassword,
-  generateToken
+  generateToken,
+  validateToken
 };
