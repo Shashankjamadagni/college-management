@@ -1,0 +1,14 @@
+{
+  "name": "college-management",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "git@github.com:Shashankjamadagni/college-management.git",
+  "author": "Shashank Jamadagni <jamadagni.018@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
