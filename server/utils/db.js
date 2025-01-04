@@ -21,6 +21,10 @@ async function initializeDb() {
   db = client.db();
 
   logger.info("Database initialized");
+
+  await db.collection("users").createIndex({email: 1}, {unique: true});
+
+  logger.info("Users index created");
 }
 
 function getDb() {
