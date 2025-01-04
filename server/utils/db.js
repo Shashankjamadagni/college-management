@@ -1,5 +1,7 @@
 const {MongoClient} = require("mongodb");
 
+const logger = require("./logger");
+
 let db = null;
 
 async function initializeDb() {
@@ -18,7 +20,7 @@ async function initializeDb() {
 
   db = client.db();
 
-  console.log("Database connected");
+  logger.info("Database initialized");
 }
 
 function getDb() {
