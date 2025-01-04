@@ -1,0 +1,12 @@
+services:
+  db:
+    image: mongo:7.0.16
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: collegeUser
+      MONGO_INITDB_ROOT_PASSWORD: collegePassword
+      MONOG_INITDB_DATABASE: college
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data/db:/data/db
