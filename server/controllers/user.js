@@ -2,16 +2,24 @@ const {userSchema, registerUser, getUserByQueryAndOptions, validatePassword, gen
 
 async function registerUserController(req, res, next) {
 
-  const validatedUser = userSchema.validate(req.body);
-  if (validatedUser.error) {
-    return res.status(400).json({ error: validatedUser.error.details[0].message });
+  try {
+    const validatedUser = userSchema.validate(req.body);
+    if (validatedUser.error) {
+      return res.status(400).json({ error: validatedUser.error.details[0].message });
+    }
+
+    const newUser = await registerUser(validatedUser.value);
+
+    delete newUser.password;
+
+    return res.status(201).json(newUser);
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(400).json({ error: "Email already exists" });
+    }
+
+    throw error;
   }
-
-  const newUser = await registerUser(validatedUser.value);
-
-  delete newUser.password;
-
-  return res.status(201).json(newUser);
 
 }
 
