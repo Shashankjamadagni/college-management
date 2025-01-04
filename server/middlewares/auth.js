@@ -23,7 +23,15 @@ async function adminOnlyMiddleware(req, res, next) {
   next();
 }
 
+async function adminOrTeacherMiddleware(req, res, next) {
+  if (req.user.role !== "admin" && req.user.role !== "teacher") {
+    return res.status(403).json({error: "Forbidden"});
+  }
+  next();
+}
+
 module.exports = {
   authMiddleware,
-  adminOnlyMiddleware
+  adminOnlyMiddleware,
+  adminOrTeacherMiddleware
 };
