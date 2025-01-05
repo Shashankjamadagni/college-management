@@ -54,7 +54,13 @@ async function loginUserController(req, res, next) {
 
 }
 
+async function fetchStudentsController(req, res, next) {
+  const students = await getUserByQueryAndOptions({role: "student"}, {projection: {password: 0}});
+  return res.status(200).json(students);
+}
+
 module.exports = {
   registerUserController,
-  loginUserController
+  loginUserController,
+  fetchStudentsController
 }
