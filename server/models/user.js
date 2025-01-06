@@ -12,7 +12,7 @@ const userSchema = joi.object({
   password: joi.string().required(),
   createdAt: joi.date().default(new Date()),
   updatedAt: joi.date().default(new Date()),
-  role: joi.string().valid("student").default("student")
+  role: joi.string().valid("student", "admin", "teacher").default("student")
 });
 
 const registerUser = async (user) => {
@@ -37,6 +37,14 @@ const getUserByQueryAndOptions = async (query, options) => {
   const user = await getDb().collection(collectionName).findOne(query, options);
 
   return user;
+
+};
+
+const getUsersByQueryAndOptions = async (query, options) => {
+  
+  const users = await getDb().collection(collectionName).find(query, options).toArray();
+
+  return users;
 
 };
 
@@ -76,5 +84,6 @@ module.exports = {
   getUserByQueryAndOptions,
   validatePassword,
   generateToken,
-  validateToken
+  validateToken,
+  getUsersByQueryAndOptions
 };

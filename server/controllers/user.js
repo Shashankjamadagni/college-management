@@ -1,4 +1,4 @@
-const {userSchema, registerUser, getUserByQueryAndOptions, validatePassword, generateToken} = require("../models/user");
+const {userSchema, registerUser, getUserByQueryAndOptions, getUsersByQueryAndOptions, validatePassword, generateToken} = require("../models/user");
 
 async function registerUserController(req, res, next) {
 
@@ -55,7 +55,7 @@ async function loginUserController(req, res, next) {
 }
 
 async function fetchStudentsController(req, res, next) {
-  const students = await getUserByQueryAndOptions({role: "student"}, {projection: {password: 0}});
+  const students = await getUsersByQueryAndOptions({role: "student"}, {projection: {password: 0}});
   return res.status(200).json(students);
 }
 
