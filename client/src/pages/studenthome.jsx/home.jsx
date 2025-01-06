@@ -20,7 +20,6 @@ export default function StudentPage() {
       }); 
         if (response.status === 200) {
           const marksData = response.data;
-          // Sort and set this data in state by createdAt in descending order
 
           setStudentData(marksData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
           
